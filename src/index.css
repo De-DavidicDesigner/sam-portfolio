@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #111827;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #2563eb; /* blue-600 */
+    border-radius: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #1d4ed8; /* darker blue */
+  }
+  
+  .no-scrollbar::-webkit-scrollbar{
+    width: 6px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar-track {
+    background: #111827;
+  }
+
+  .no-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #11182700;
+    border-radius: 6px;
+  }
