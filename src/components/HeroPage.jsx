@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import self from "../assets/Sam.jpg";
@@ -9,7 +9,7 @@ const HeroPage = () => {
   const [wordIndex, setWordIndex] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(200);
   const [pause, setPause] = useState(false);
-  
+
   useEffect(() => {
     const words = ["Software Engineer", "Christian", "Developer"];
 
@@ -50,6 +50,15 @@ const HeroPage = () => {
     return () => clearTimeout(timer);
   }, [text, isDeleting, pause, typingSpeed, wordIndex]);
 
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = "Samuel_Omolaja.pdf"
+    link.download = "Samuel_Omolaja.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
   return (
     <div className="w-full h-screen px-20 bg-gray-900 flex flex-row items-center justify-center">
       <div className="container flex flex-col items-start justify-center">
@@ -59,31 +68,22 @@ const HeroPage = () => {
           Welcome to my portfolio website!
         </p>
         <div className="flex space-x-20 mt-4">
-          <a
-            href="#"
+          <button
+            onClick={handleDownload}
             className="bg-blue-600 text-white px-4 py-2 rounded-3xl border-2 border-blue-600 hover:text-blue-600 hover:border-2 hover:bg-transparent transition duration-300"
           >
-            Get in Touch
-          </a>
+            Download CV
+          </button>
           <div className="flex flex-row space-x-6">
-            <a
-              href=""
-              className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-black/90 transition duration-300"
-            >
-              <FaGithub />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/samuel-omolaja-b2480089?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-              className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-black/90 transition duration-300"
-            >
-              <FaLinkedin />
-            </a>
-            <a
-              href="https://www.facebook.com/share/164zrgBUsK/"
-              className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-black/90 transition duration-300"
-            >
-              <FaFacebook />
-            </a>
+            {socials.map((social) => (
+              <Link
+                key={social.id}
+                to={social.link}
+                className="w-10 h-10 flex items-center justify-center rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-black/90 transition duration-300"
+              >
+                {social.icon}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
@@ -99,3 +99,20 @@ const HeroPage = () => {
 };
 
 export default HeroPage;
+
+const socials = [
+  {
+    id: "github",
+    icon: <FaGithub />,
+  },
+  {
+    id: "linkedIm",
+    icon: <FaLinkedin />,
+    link: "https://www.linkedin.com/in/samuel-omolaja-b2480089?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+  },
+  {
+    id: "facebook",
+    icon: <FaFacebook />,
+    link: "https://www.facebook.com/share/164zrgBUsK/",
+  },
+];

@@ -38,11 +38,11 @@ const AboutMeList = [
     title: 'Gender',
     content: 'Male'
   },
-  {
-    id: 3,
-    title: 'Status',
-    content: 'In A Relationship'
-  },
+  // {
+  //   id: 3,
+  //   title: 'Status',
+  //   content: 'In A Relationship'
+  // },
   {
     id: 4,
     title: 'City',
