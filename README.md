@@ -1,12 +1,55 @@
-# React + Vite
+# Samuel Omolaja — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio of **Samuel Omolaja**, a backend-focused full-stack engineer (Java, Spring Boot, Node.js, Kafka, AWS).
 
-Currently, two official plugins are available:
+Built with React 19, Vite 6 and Tailwind CSS 4 as a single-page site.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting started
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev       # start the dev server
+npm run build     # production build to dist/
+npm run preview   # serve the production build
+npm run lint
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Contact form
+
+The contact form sends mail through [EmailJS](https://www.emailjs.com/). To use your own account, copy `.env.example` to `.env.local` and set:
+
+```
+VITE_EMAILJS_SERVICE_ID=
+VITE_EMAILJS_TEMPLATE_ID=
+VITE_EMAILJS_PUBLIC_KEY=
+```
+
+The template should accept `name`, `email`, `title` and `message` fields.
+
+## Project structure
+
+```
+src/
+├── data/            # All site content — edit these to update the portfolio
+│   ├── profile.js   #   name, bio, contact details, socials, headline metrics
+│   ├── experience.js
+│   ├── projects.js
+│   ├── skills.js
+│   ├── services.js
+│   ├── education.js
+│   └── navigation.js
+├── sections/        # One component per page section (Hero, About, Experience, …)
+├── components/
+│   ├── layout/      # Navbar, Footer
+│   ├── ui/          # Reusable primitives: Section, Button, Tag, Reveal, TerminalWindow
+│   ├── ContactForm.jsx
+│   └── SocialLinks.jsx
+├── hooks/           # useTypewriter, useActiveSection, useInView, usePrefersReducedMotion
+├── config/          # Third-party config (EmailJS)
+├── lib/             # Small utilities
+└── index.css        # Tailwind import + design tokens (@theme)
+```
+
+Content and presentation are separated: updating experience, skills or contact details only requires editing files in `src/data/`.
+
+The CV served by the "Download CV" buttons lives at `public/Samuel_Omolaja.pdf`.
